@@ -38,12 +38,18 @@
 			      <li><a href="/something">Something</a></li>
 			      <li><a href="/contacts">Contacts</a></li>
 			    </ul>
-			     <ul class="nav navbar-nav navbar-rigth">
-			     	<li><a href="#">Cart</li>
-			     </ul>	
 			  </div><!--/.nav-collapse -->
 			</nav>
 
+			<nav class="nav navbar-nav navbar-right">
+  				<li>
+  					<form action="/cart" method="post">
+  					<input name="orders" type="text" />
+  					<input type="submit" class="btn btn-primary btn-large" value="Cart(...)"/>
+  					</form>
+  				</li>
+			</nav>
+			
 			<div>
 			      <%if @error && @error.length > 0 then %>
 			          <div class="alert alert-danger"><%=@error%></div>
