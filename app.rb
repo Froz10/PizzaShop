@@ -9,6 +9,7 @@ set :database, "sqlite3:pizzashop.db"
 class Product < ActiveRecord::Base
 end	
 
+
 before do 
 	@products = Product.all
 end
@@ -22,12 +23,15 @@ get '/about' do
 end
 
 post '/cart' do
-	orders_input = params[:orders]
-	@items = parse_orders_input orders_input
+	
+	@orders_input = params[:orders]
+	@items = parse_orders_input @orders_input
 
 	@items.each do |item|
 
-		item[0] = @products.find(item[0])
+		item[0] = @products.find(item[0]).id
+		item[0] = @products.find(item[0]).title
+		item[2] = @products.find(item[2]).price
 
 	end
 
@@ -49,8 +53,9 @@ def parse_orders_input orders_input
 
 		id = s2[1]
 		cnt = s1[1]
+		price = id
 
-		arr2 = [id, cnt]
+		arr2 = [id, cnt, price]
 
 		arr.push arr2
 
