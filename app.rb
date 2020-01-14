@@ -31,8 +31,16 @@ end
 
 post '/cart' do
 	
+	# получаем список параметров и разбираем (parse) их
+
 	@orders_input = params[:orders_input]
 	@items = parse_orders_input @orders_input
+
+	if @items.length == 0
+		return erb :cart_is_empty
+	end
+
+	#выводим список продуктов в корзине
 
 	@items.each do |item|
 
@@ -41,6 +49,8 @@ post '/cart' do
 		item[2] = @products.find(item[2]).price
 
 	end
+
+	# возвращаем представление по-умолчанию
 
 	erb :cart
 end
