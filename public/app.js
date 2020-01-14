@@ -87,3 +87,9 @@ function cart_get_orders()
 
 }
 
+function cancel_order()
+
+{
+	alert('aaa');
+  	return false;
+}
